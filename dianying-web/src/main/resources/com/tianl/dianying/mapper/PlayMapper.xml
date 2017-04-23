@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tianl.dianying.mapper.PlayMapper">
+
+    <resultMap id="DetailMap" type="com.tianl.dianying.entity.Play" extends="ListMap">
+    </resultMap>
+
+    <resultMap id="ListMap" type="com.tianl.dianying.entity.Play">
+        <result property="movieId" column="movieId" />
+        <association property="movie" column="movieId" fetchType="eager"
+                     select="com.tianl.dianying.mapper.MovieMapper.selectByPrimaryKey" />
+    </resultMap>
+
+    <select id="selectByPrimaryKey"  resultMap="DetailMap">
+        select * from `play`
+        where id=#{id}
+    </select>
+
+</mapper>

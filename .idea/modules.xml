@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dianying-parent.iml" filepath="$PROJECT_DIR$/dianying-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dianying-web/dianying-web.iml" filepath="$PROJECT_DIR$/dianying-web/dianying-web.iml" />
+    </modules>
+  </component>
+</project>

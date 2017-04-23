@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Basic alerts with twitter bootstrap</title>
+    <meta name="description" content="Creating basic alerts with Twitter Bootstrap. Examples of alerts and errors with Twitter Bootstrap">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="span4">
+            <div class="alert">
+                <a class="close" data-dismiss="alert">×</a>
+                <strong>Warning!</strong> Best check yo self, you're not looking too good.
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/assets/js/jquery-1.11.0.min.js"></script>
+<script src="twitter-bootstrap-v2/docs/assets/js/bootstrap-alert.js"></script>
+</body>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds" debug="true">
+	<contextName>dianying</contextName>
+	
+	<property name="LOG_HOME" value="/data/logs/tomcat/dianying/runtime/dianying" />
+	<property name="DEFAULT_PATTERN" value="%d %-5level [%X{ctxLogId}][%thread] %logger{5} - %msg%n" />
+	<property name="CHARSET" value="UTF-8" />
+	<property name="LEVEL" value="info" />
+	
+	<!-- 控制台打印 -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%-5level] %date{HH:mm:ss.SSS} %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<appender name="CONSOLE_ERROR" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<target>System.err</target>
+		<encoder>
+			<pattern>[%-5level] [%thread] %date %logger{80} - %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	
+	<!-- spring 相关日志 -->
+	<appender name="DEFAULT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/default.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/%d{yyyyMMdd}/default.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+           		<cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${DEFAULT_PATTERN}</pattern>
+			<charset>${CHARSET}</charset>
+		</encoder>
+	</appender>
+	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/error.log</file>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/%d{yyyyMMdd}/error.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+           		<cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${DEFAULT_PATTERN}</pattern>
+			<charset>${CHARSET}</charset>
+		</encoder>
+	</appender>
+	
+	<!-- Appenders: App Details -->
+	<appender name="DAL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/dal.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/%d{yyyyMMdd}/dal.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+           	<cleanHistoryOnStart>true</cleanHistoryOnStart>
+           	<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${DEFAULT_PATTERN}</pattern>
+			<charset>${CHARSET}</charset>
+		</encoder>
+	</appender>
+	
+	<appender name="SERVICE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_HOME}/service.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_HOME}/%d{yyyyMMdd}/service.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${DEFAULT_PATTERN}</pattern>
+			<charset>${CHARSET}</charset>
+		</encoder>
+	</appender>
+	
+	<!-- Loggers : App Details -->
+	<logger name="com.tianl.dianying.controller" level="${LEVEL}" additivity="false">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="SERVICE" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="com.tianl.dianying.service" level="${LEVEL}" additivity="false">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="SERVICE" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	
+	<logger name="com.tianl.dianying.dao" level="${LEVEL}" additivity="false">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="DAL" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="com.alibaba.druid" level="${LEVEL}" additivity="false">
+		<appender-ref ref="DAL" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="druid.sql.DataSource" level="${LEVEL}" additivity="false">
+		<appender-ref ref="DAL" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="druid.sql.Connection" level="${LEVEL}" additivity="false">
+		<appender-ref ref="DAL" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="druid.sql.Statement" level="${LEVEL}" additivity="false">
+		<appender-ref ref="DAL" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="druid.sql.ResultSet" level="${LEVEL}" additivity="false">
+		<appender-ref ref="DAL" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="org.mybatis" level="${LEVEL}" additivity="false">
+		<appender-ref ref="DAL" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	<logger name="org.apache.ibatis" level="${LEVEL}" additivity="false">
+		<appender-ref ref="DAL" />
+		<appender-ref ref="ERROR" />
+	</logger>
+	
+	<root level="${LEVEL}">
+		<appender-ref ref="ERROR" />
+		<appender-ref ref="DEFAULT" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+		
+</configuration>

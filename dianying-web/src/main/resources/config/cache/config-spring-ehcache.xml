@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         updateCheck="false" dynamicConfig="false">
+
+    <diskStore path="java.io.tmpdir"/>
+
+    <!--
+    根据事件类型查询事件通知人。 缓存15秒
+     -->
+ <!--   <cache name="cacheFindByEventRequestType" eternal="false"
+           maxElementsInMemory="1000" overflowToDisk="false" diskPersistent="false"
+           timeToIdleSeconds="0" timeToLiveSeconds="15"
+           memoryStoreEvictionPolicy="LRU" />-->
+
+</ehcache>
