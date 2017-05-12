@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -95,7 +96,8 @@ public class PlayController {
             play.setVideoHall(videoHall);
             play.setShowtime(sdf.parse(showtime));
             play.setSeatNum(seatNum);
-
+            play.setCreateDate(new Date());
+            play.setModifyDate(new Date());
             long result = playService.insert(play);
 
             if(result == 0){

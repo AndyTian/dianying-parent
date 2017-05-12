@@ -98,7 +98,7 @@
         }
 
         function initUpdate(id){
-            $.get( "/play/showUpdate/" + id, function( data ){
+            $.get( "/admin/play/showUpdate/" + id, function( data ){
 
                 var html = '<div id="dialog" class="hide" title="修改电影信息"><div class="mrg10A">' + data + '</div></div>';
                 $( html ).dialog({
@@ -118,7 +118,7 @@
                                 return;
                             }
 
-                            $.post( '/play/update/' + id, $( '#dialog form' ).serialize() )
+                            $.post( '/admin/play/update/' + id, $( '#dialog form' ).serialize() )
                                     .done(function(data){
                                         if(data["status"] == "success"){
                                             $.jGrowl("修改成功", {sticky:!1,position:"top-right",theme:"bg-green"});
@@ -141,7 +141,7 @@
         };
 
         function initAdd(){
-            $.get( "/play/showAdd", function( data ){
+            $.get( "/admin/play/showAdd", function( data ){
 
                 var html = '<div id="dialog" class="hide" title="添加"><div class="mrg10A">' + data + '</div></div>';
                 $( html ).dialog({
@@ -162,7 +162,7 @@
                             }
 
 
-                            $.post( '/play/add', $( '#dialog form' ).serialize() )
+                            $.post( '/admin/play/add', $( '#dialog form' ).serialize() )
                                     .done(function(data){
                                         if(data["status"] == "success"){
                                             $.jGrowl("成功", {sticky:!1,position:"top-right",theme:"bg-green"});
@@ -185,7 +185,7 @@
 
         function initDelete(id){
             $.messager.confirm( "提示", "确认删除吗?", function(){
-                $.post( '/play/delete/'+id)
+                $.post( '/admin/play/delete/'+id)
                         .done(function(data){
                             if(data["status"] == "success"){
                                 $.jGrowl("删除成功", {sticky:!1,position:"top-right",theme:"bg-green"});

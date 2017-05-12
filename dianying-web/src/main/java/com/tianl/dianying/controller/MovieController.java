@@ -113,6 +113,7 @@ public class MovieController extends BaseController{
     @ResponseBody
     public HttpResponse update(@PathVariable final Long id, String name, String pic, String director, String stars, String showtime){
         try {
+            System.out.println(director);
             if (StringUtils.isEmpty(name)) {
                 return getFailResponse("电影名不能为空");
             }

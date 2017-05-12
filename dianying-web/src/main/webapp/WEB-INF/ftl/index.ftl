@@ -3,7 +3,6 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/minified/aui-production.min.css"/>
-    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!--jQuery(necessary for Bootstrap's JavaScript plugins)-->
     <script src="/assets/js/jquery-1.11.0.min.js"></script>
     <!--Custom-Theme-files-->
@@ -16,13 +15,10 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!--start-menu-->
-    <script src="/assets/js/simpleCart.min.js"> </script>
-    <link href="/assets/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
     <link rel="stylesheet" type="text/css" href="/assets/css/minified/aui-production.min.css"/>
-    <script type="text/javascript" src="/assets/js/memenu.js"></script>
-    <script>$(document).ready(function(){$(".memenu").memenu();});</script>
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!--dropdown-->
-    <script src="/assets/js/jquery.easydropdown.js"></script>
+    <script src="/assets/js/bootstrap.js"></script>
 </head>
 <body>
 <!--top-header-->
@@ -33,13 +29,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="col-md-12 top-header-left">
                 <div class="cart box_1">
                     <font color="#FFFFFF">
-                    ${sessionUser.name}已登录
+                    ${sessionUser.username}已登录
                     </font>
                     <a href="ord/list">
                         <font color="#FFFFFF">
                            查看订单
                             </font>
                         <img src="/assets/images/cart-1.png" alt="" />
+                    </a>
+                    <a href="logout">
+                        <font color="#FFFFFF">
+                            切换用户
+                        </font>
                     </a>
                     <div class="clearfix"> </div>
                 </div>
@@ -52,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--top-header-->
 <!--start-logo-->
 <div class="logo">
-    <a href="index.html"><h1>爱丽丝影院</h1></a>
+    <a href="http://localhost:8080/"><h1>爱丽丝影院</h1></a>
 </div>
 <!--start-logo-->
 <!--bottom-header-->

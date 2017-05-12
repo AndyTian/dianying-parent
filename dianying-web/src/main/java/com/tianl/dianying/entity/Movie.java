@@ -37,6 +37,11 @@ public class Movie extends BaseEntity{
     @Column
     @Getter
     @Setter
+    private String summary;
+
+    @Column
+    @Getter
+    @Setter
     private Date showtime;
 
 

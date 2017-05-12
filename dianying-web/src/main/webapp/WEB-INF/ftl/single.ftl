@@ -201,13 +201,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-12 top-header-left">
             <div class="cart box_1">
                 <font color="#FFFFFF">
-                ${sessionUser.name}已登录
+                ${sessionUser.username}已登录
                 </font>
                 <a href="/ord/list">
                     <font color="#FFFFFF">
                         查看订单
                     </font>
                     <img src="/assets/images/cart-1.png" alt="" />
+                </a>
+                <a href="logout">
+                    <font color="#FFFFFF">
+                        切换用户
+                    </font>
                 </a>
                 <div class="clearfix"> </div>
             </div>
@@ -220,7 +225,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--top-header-->
 <!--start-logo-->
 <div class="logo">
-    <a href="http://localhost:8080/?pageNumber=1&pageSize=2"><h1>爱丽丝影院</h1></a>
+    <a href="http://localhost:8080/"><h1>爱丽丝影院</h1></a>
 </div>
 <!--start-logo-->
 <!--bottom-header-->
@@ -263,7 +268,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <h6>导演：${movie.director}</h6>
                             <h6>主演：${movie.stars}</h6>
                             <h6>简介：</h6>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                            <p>${movie.summary}</p>
                         </div>
                     </div>
                     <div class="clearfix"> </div>

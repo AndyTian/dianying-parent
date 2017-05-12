@@ -27,13 +27,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-12 top-header-left">
             <div class="cart box_1">
                 <font color="#FFFFFF">
-                ${sessionUser.name}已登录
+                ${sessionUser.username}已登录
                 </font>
-                <a href="/ord/list">
+                <a href="ord/list">
                     <font color="#FFFFFF">
                         查看订单
                     </font>
                     <img src="/assets/images/cart-1.png" alt="" />
+                </a>
+                <a href="logout">
+                    <font color="#FFFFFF">
+                        切换用户
+                    </font>
                 </a>
                 <div class="clearfix"> </div>
             </div>

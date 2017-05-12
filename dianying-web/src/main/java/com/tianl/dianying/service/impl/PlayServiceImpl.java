@@ -11,6 +11,8 @@ import com.tianl.dianying.service.PlayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,9 +40,12 @@ public class PlayServiceImpl extends SimpleTableService<Play> implements PlaySer
     }
 
     public List<Play> findByCondition(long movieId, long cinemaId) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         PlayExample example = new PlayExample();
         example.appendCriterion("movieId = ", movieId);
         example.appendCriterion("cinemaId = ", cinemaId);
+        example.appendCriterion("str_to_date(showtime,'%Y-%m-%d %H:%i') >= ", df.format(new Date()));
+        example.setOrderByClause("showtime asc");
         List<Play> list = getBaseMapper().selectByExample(example,null);
         return list;
     }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>消息管理系统登陆</title>
     <meta name="description" content="" />
@@ -21,7 +21,6 @@
              );
          });
     </script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body style="overflow: hidden;">
 
@@ -34,7 +33,7 @@
 <div id="page-content">
 <div class="pad20A mrg25T">
     <div class="row mrg25T">
-        <form id="form" action="/admin/login" class="col-md-4 center-margin form-vertical mrg25T" method="POST">
+        <form id="form" action="/admin/login" class="col-md-4 center-margin form-vertical mrg25T" method="POST" enctype="multipart/form-data">
             <div class="ui-dialog modal-dialog mrg25T" id="login-form" style="position: relative !important;">
                 <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
                     <span class="ui-dialog-title">票务管理系统登陆</span>

@@ -41,6 +41,7 @@ create table movie(
   pic               varchar(128) comment '图片地址',
   director          varchar(32) comment '导演名',
   stars             varchar(32) comment '主演',
+  summary           TEXT comment '简介',
   showtime            datetime comment '上映日期',
   createDate           datetime COMMENT '创建时间',
   modifyDate          datetime COMMENT '更新时间',

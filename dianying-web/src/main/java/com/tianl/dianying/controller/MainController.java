@@ -6,6 +6,7 @@ import com.tianl.dianying.common.page.Pager;
 import com.tianl.dianying.common.page.PagerHelper;
 import com.tianl.dianying.common.pojo.HttpResponse;
 import com.tianl.dianying.entity.*;
+import com.tianl.dianying.enumeration.GenderType;
 import com.tianl.dianying.service.*;
 import org.apache.ibatis.annotations.ResultMap;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.UnsupportedEncodingException;
+import java.util.*;
 
 /**
  * Created by Administrator on 2016/12/11.
@@ -101,10 +100,8 @@ public class MainController extends BaseController{
     }
 
     @RequestMapping(value = "/admin/login", method = RequestMethod.POST)
-    public String adminLogin(HttpServletRequest request, String username, String password) {
-        System.out.println(name);
-        System.out.println(pass);
-        System.out.println(adminSessionUser);
+    public String adminLogin(HttpServletRequest request, String username, String password){
+        System.out.println(username);
         if( !(name.equals(username) && pass.equals(password))){
             logger.warn("{}登录失败",username);
             return "adminLogin";
@@ -116,7 +113,7 @@ public class MainController extends BaseController{
     }
 
     @RequestMapping(value = "admin/logout")
-    public String logout(HttpServletRequest request) {
+    public String adminLogout(HttpServletRequest request) {
         request.getSession().invalidate();
         return "adminLogin";
     }
@@ -136,6 +133,7 @@ public class MainController extends BaseController{
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(HttpServletRequest request, String username, String password, Model model) {
         User user = userService.findByUsername(username);
+        System.out.println(username);
         if(user != null){
             System.out.println(DigestUtils.md5DigestAsHex(password.getBytes()));
             if(user.getPassword().equals(DigestUtils.md5DigestAsHex(password.getBytes()))) {
@@ -151,6 +149,42 @@ public class MainController extends BaseController{
             model.addAttribute("errorMsg", "用户不存在");
             return "login";
         }
+    }
+
+    @RequestMapping(value = "/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "login";
+    }
+
+    @RequestMapping(value = "/register")
+    public String register(){
+        return "register";
+    }
+
+    @RequestMapping(value = "/register" , method = RequestMethod.POST)
+    public String register(Model model, String username, String password, String nickname, String name, GenderType gender, String phonenumber){
+        User user = userService.findByUsername(username);
+        if (user != null){
+            model.addAttribute("errorMsg", "用户名已存在");
+            return "register";
+        }
+        System.out.println(nickname);
+        User entity = new User();
+        entity.setUsername(username);
+        entity.setPassword(DigestUtils.md5DigestAsHex(password.getBytes()));
+        entity.setNickname(nickname);
+        entity.setName(name);
+        entity.setGender(gender);
+        entity.setPhonenumber(phonenumber);
+        entity.setCreateDate(new Date());
+        entity.setModifyDate(new Date());
+        long result = userService.insert(entity);
+        if (result == 0){
+            model.addAttribute("errorMsg", "注册失败");
+            return "register";
+        }
+        return "login";
     }
 
 
@@ -241,8 +275,13 @@ public class MainController extends BaseController{
     @RequestMapping(value = "/play/list/{movieId}/{cinemaId}", method = RequestMethod.GET)
     @ResponseBody
     public List<Play> list(@PathVariable long movieId, @PathVariable long cinemaId){
-        List<Play> list = playService.findByCondition(movieId,cinemaId);
-        System.out.println(JSON.toJSONString(list));
+        List<Play> list = new ArrayList<Play>();
+        try {
+            list = playService.findByCondition(movieId, cinemaId);
+            System.out.println(JSON.toJSONString(list));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return list;
     }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>消息管理系统登陆</title>
+    <title>爱丽丝影院登陆</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
@@ -17,6 +17,7 @@
             width:20em;
         }
     </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     </head>
 <body>
 <div class="container">
@@ -24,7 +25,7 @@
     <div class="col-md-4">
     <form id="form" action="/login" method="post">
 
-        <h2 class="form-signin-heading">请登录</h2>
+        <h2 class="form-signin-heading">请登录爱丽丝影院</h2>
         <div class="form-group">
             <input name="username"  type="text" class="form-control form-signin-name" placeholder="User name" autofocus>
         </div>
@@ -39,6 +40,7 @@
         <label class="checkbox">
             <input type="checkbox" value="remember-me"> 记住我
         </label>
+        <a href="register">没有账号？注册</a>
         <button  type="submit" class="btn btn-lg btn-primary btn-block " id="sign-in-btn" onclick="$('#form').parsley( 'validate' );">登陆</button>
 
     </form>
